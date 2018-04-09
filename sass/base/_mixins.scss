@@ -1,0 +1,39 @@
+/*-- Regular Mixins --*/
+
+@mixin transition($ms) {
+	-webkit-transition: 	all $ms ease-in-out;
+	-moz-transition: 		all $ms ease-in-out;
+	-o-transition: 			all $ms ease-in-out;
+	transition: 			all $ms ease-in-out;
+}
+
+@mixin borderRadius($px) {
+	-webkit-border-radius: 	$px;
+	-moz-border-radius: 	$px;
+	border-radius: 			$px;
+}
+
+@mixin collumCount($count) {
+	-webkit-columns: 		auto $count; /* Chrome, Safari, Opera */
+    -moz-columns: 			auto $count; /* Firefox */
+    columns: 				auto $count;
+}
+
+@mixin collumGap($gap) {
+	-webkit-column-gap: 	$gap; /* Chrome, Safari, Opera */
+    -moz-column-gap: 		$gap; /* Firefox */
+    column-gap: 			$gap;
+}
+
+@mixin appearance($value) {
+	-webkit-appearance: 	$value;
+    -moz-appearance: 		$value;
+    appearance: 			$value;
+}
+
+@mixin backgroundSize($size) {
+	-webkit-background-size: 	$size;
+	-moz-background-size: 		$size;
+	-o-background-size: 		$size;
+	background-size: 			$size;
+}

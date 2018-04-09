@@ -1,0 +1,17 @@
+/*---- Visuals ----*/
+
+a.standardButton {
+	background: $primary;
+	@include quicksand(em(15), 500);
+	color: $white;
+	padding: em(9) em(20);
+	border: 3px solid transparent;
+	@include borderRadius(30px);
+	@include transition(300ms);
+}
+
+a.standardButton:hover {
+	background: transparent;
+	color: $primary;
+	border: 3px solid $primary;
+}

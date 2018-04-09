@@ -1,0 +1,33 @@
+<% include ../partials/head %>
+
+<div id="container">
+
+	<main class="wrapper register">
+
+		<img src="images/logo.svg">	
+		<a class="standardButton" href="/login">Login</a>
+
+		<section>
+
+			<header>
+					<h1>Register and share your travel stories</h1>
+			</header>
+
+			<form action="/" method="POST">
+				<input type="text" name="name" placeholder="What's your name" required>
+				<input type="text" name="place" placeholder="Where are you from">
+				<input type="email" name="email" placeholder="Email" required>
+				<input type="text" name="username" placeholder="Create a username" required>
+				<input type="password" name="password" placeholder="Password" required>
+				<input type="submit" value="Register">
+			</form>
+			
+		</section>
+
+	</main>
+
+	<span class="reference"><%= caption %></span>
+
+</div>
+
+<% include ../partials/footer %>

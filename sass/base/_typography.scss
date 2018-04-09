@@ -1,0 +1,18 @@
+/* Fonts */
+@mixin openSans($size) {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: $size;
+}
+
+@mixin lobster($size) {
+	font-family: 'Lobster', cursive;
+	font-weight: 400;
+	font-size: $size;
+}
+
+@mixin quicksand($size, $weight) {
+	font-family: 'Quicksand', sans-serif;
+	font-weight: $weight;
+	font-size: $size;
+}

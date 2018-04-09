@@ -1,0 +1,12 @@
+/*---- Functions ----*/
+
+@function collumn-width($collumnCount, $gutter ) {
+	$newCollumnCount: ($collumnCount - 1);
+	$totalGutter: ($newCollumnCount * $gutter);
+	@return (100% - $totalGutter) / $collumnCount;
+}
+
+$browser-context: 16;
+@function em($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}em;
+}

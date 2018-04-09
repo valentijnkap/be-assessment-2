@@ -1,0 +1,98 @@
+/* Register */
+
+div#container {
+	position: relative;
+	display: block;
+	background: url('../images/background.jpg') no-repeat center center fixed;
+	@include backgroundSize(cover);
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0 0 em(50) 0;
+}
+
+main.register {
+	padding: em(20) 0 0 0;
+
+	> a {
+		float: right;
+	}
+
+	section {
+		background: $white;
+		width: em(450);
+		margin: 0 auto;
+		padding: 0 0 em(20) 0;
+		@include borderRadius(6px);
+		-webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+		-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+		box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+
+		header {
+			background-image: linear-gradient(-47deg, #58DFFC 0%, #58E0FC 0%, #51DAFC 0%, #BF6D93 0%, #BE6E94 8%, #3CCBFA 100%, #32C3F9 100%, #2EC0F9 100%, #3CCBFA 100%);
+			width: 100%;
+			margin: em(40) 0 0 0;
+			padding: em(20) em(70);
+
+			-webkit-border-top-left-radius: 6px;
+			-webkit-border-top-right-radius: 6px;
+			-moz-border-radius-topleft: 6px;
+			-moz-border-radius-topright: 6px;
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+
+			h1 {
+				@include quicksand(em(24), 500);
+				color: $white;
+				text-align: center;
+				line-height: em(26);
+			}
+		}
+
+		form {
+			padding: em(30);
+
+			input[type=text], input[type=email], input[type=password] {
+				@include quicksand(em(15), 400);
+				color: $text;
+				border: none;
+				border-bottom: 2px solid $text;
+				width: 100%;
+				margin: 0 0 em(30) 0;
+				padding: em(15) em(12);
+				@include transition(300ms);
+			}
+
+			input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+				color: $secundary;
+				border-bottom: 2px solid $secundary;
+			}
+
+			input[type=submit] {
+				background: $secundary;
+				@include quicksand(em(15), 500);
+				color: $white;
+				width: 100%;
+				padding: em(15) 0;
+				border: none;
+				@include borderRadius(30px);
+				cursor: pointer;
+				@include transition(300ms);
+			}
+
+			input[type=submit]:hover {
+				background: $primary;
+			}
+		}
+	}
+}
+
+span.reference {
+	position: absolute;
+	background: rgba(27, 27, 27, 0.6);
+	@include quicksand(em(14), 400);
+	color: $white;
+	right: em(20);
+	bottom: em(20);
+	padding: em(8) em(10);
+}
