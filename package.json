@@ -16,5 +16,13 @@
     "ejs": "^2.5.8",
     "express": "^4.16.3"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valentijnkap/be-assessment-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valentijnkap/be-assessment-2/issues"
+  },
+  "homepage": "https://github.com/valentijnkap/be-assessment-2#readme"
 }
