@@ -1,6 +1,6 @@
 # Assessment 2
 
-[Banner][banner]
+![Banner][banner]
 
 # Places
 
@@ -12,7 +12,7 @@
 * To do's
 * Recourses
 
-## (#The-story)
+## The-story
 
 ## The making of
 
