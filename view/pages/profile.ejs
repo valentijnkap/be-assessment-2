@@ -2,4 +2,9 @@
 
 <h1>Als ik ben ingelogd krijg ik dit te zien</h1>
 
+<% if (data) { %>
+  <h2><%= data.name %></h2>
+  <span><%= data.place %></span>
+<% } %>
+
 <% include ../partials/footer %>
