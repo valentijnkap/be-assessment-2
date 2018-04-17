@@ -1,10 +1,30 @@
 <% include ../partials/head %>
 
-<h1>Als ik ben ingelogd krijg ik dit te zien</h1>
+<nav role="navigation">
+	<div class="wrapper">
+		<a class="post" href="/write">Post a story <img src="icons/plus.svg"></a>
+		<h2>Profile</h2>
+		<a class="logout" href="/logout">Logout</a>
+		<a class="feed" href="/feed">See feed</a>
+	</div>
+</nav>
 
-<% if (data) { %>
-  <h2><%= data.name %></h2>
-  <span><%= data.place %></span>
-<% } %>
+<header class="profile">
+
+	<figure style="background: url('images/profile.jpg') no-repeat center center;"></figure>
+
+	<h1><span class="name"><%= data.name %></span>, <span class="place"><%= data.place %></span></h1>
+	
+</header>
+
+<section class="meta">
+	<div class="table">
+		<ul>
+			<li>Stories: <span class="data"><%= data.stories.length %></span></li>
+			<li>Followers: <span class="data"><%= data.followers.length %></span></li>
+			<li>Following: <span class="data"><%= data.following.length %></span></li>
+		</ul>
+	</div>
+</section>
 
 <% include ../partials/footer %>

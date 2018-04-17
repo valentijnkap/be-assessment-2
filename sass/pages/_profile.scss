@@ -1,0 +1,113 @@
+/* Profile */
+
+nav[role=navigation] {
+	background: $white;
+	width: 100%;
+	padding: em(20) 0;
+	border-bottom: 1px solid #DBDBDB;
+	
+	a.post {
+		background: $primary;
+		@include quicksand(em(15), 400);
+		color: $white;
+		float: left;
+		padding: em(10) em(20);
+		@include borderRadius(50px);
+		@include transition(300ms);
+
+		img {
+			float: right;
+			margin: 6px 0 0 10px;
+		}
+	}
+
+	a.post:hover {
+		background: $secundary;
+	}
+
+	h2	{
+		@include lobster(em(28));
+		color: $tertiary;
+		text-align: center;
+		width: 20%;
+		margin: 0 auto;
+	}
+
+	a.feed, a.logout {
+		@include quicksand(em(15), 400);
+		color: $secundary;
+		float: right;
+		padding: em(10) em(15);
+		margin: em(-38) 0 0 em(20);
+		border: 1px solid $secundary;
+		@include borderRadius(50px);
+		@include transition(300ms);
+	}
+
+	a.feed:hover, a.logout:hover {
+		border: 1px solid $primary;
+		color: $primary;
+	}
+}
+
+header.profile {
+	background: linear-gradient(226deg, #BE6E94 0%, #3CCBFA 100%);
+	padding: em(50);
+
+	figure {
+		display: block;
+		@include backgroundSize(cover);
+		width: em(150);
+		height: em(150);
+		margin: 0 auto em(30);
+		border: 4px solid $white;
+		@include borderRadius(100%);
+	}
+
+	h1 {
+		color: $white;
+		font-size: em(14);
+		text-align: center;
+
+		span.name {
+			@include quicksand(em(24), 500)
+		}
+
+		span.place {
+			@include quicksand(em(24), 400);
+		}
+	}
+}
+
+section.meta {
+	background: $white;
+	width: 100%;
+	padding: em(25) 0;
+	box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
+
+	div.table {
+		display: table;
+		margin: 0 auto;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+
+		li {
+			display: inline;
+			@include quicksand(em(20), 500);
+			color: $black;
+			margin: 0 em(20);
+
+			span.data {
+				color: $secundary;
+			}
+		}
+	}
+}
+
+
+

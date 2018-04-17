@@ -1,0 +1,54 @@
+/* Error */
+
+main#error {
+	position: relative;
+	background: linear-gradient(226deg, #BE6E94 0%, #3CCBFA 100%);
+	width: 100%;
+	height: 100%;
+
+	.wrapper {
+		position: unset;
+		padding: em(20) 0 0 0;
+
+		article {
+			position: absolute;
+			display: block;
+			width: 400px;
+			height: 300px;
+			top: 50%;
+			left: 50%;
+			margin: -150px 0 0 -200px;
+
+			h1 {
+				@include quicksand(em(66), 500);
+				color: $white;
+				text-align: center;
+				margin: 0;
+			}
+
+			p {
+				@include quicksand(em(24), 400);
+				color: $white;
+				text-align: center;
+				margin: em(10) 0 em(40);
+			}
+
+			a {
+				background: $primary;
+				display: block;
+				@include quicksand(em(18), 400);
+				color: $white;
+				text-align: center;
+				width: 220px;
+				margin: 0 auto;
+				padding: em(10) em(25);
+				@include borderRadius(50px);
+				@include transition(300ms);
+			}
+
+			a:hover {
+				background: $secundary;
+			}
+		}
+	}
+}
