@@ -1,0 +1,46 @@
+<% include ../partials/head %>
+
+<nav role="navigation">
+	<div class="wrapper">
+		<a class="back" href="/<%= data.username %>">Terug</a>
+		<h2>Edit</h2>
+		<figure class="thumb" style="background: url('images/profile.jpg');"></figure>
+	</div>
+</nav>
+
+<div class="header"></div>
+
+<section class="editForm">
+	<div>
+		<h1>Edit your profile</h1>
+
+		<form action="/edit?_method=PUT" method="POST">
+			<label>Your name
+				<input type="text" name="name" value="<%= data.name %>" required>
+			</label>
+
+			<label>Email
+				<input type="text" name="email" value="<%= data.email %>" required>
+			</label>
+			
+			<label>Where you from
+				<input type="text" name="place" value="<%= data.place %>" required>
+			</label>
+
+			<label for="fileInput" class="fileInputLabel">
+				<input id="fileInput" type="file" name="thumb">
+				<span class="filename"></span>
+				<span class="browseButton">Choose picture</span>
+			</label>
+
+			<label>Change your password
+				<input type="password" name="password">
+			</label>
+
+			<button type="submit">Update</button>
+		</form>
+
+	</div>
+</section>
+
+<% include ../partials/footer %>

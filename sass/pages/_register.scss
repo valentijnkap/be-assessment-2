@@ -31,7 +31,7 @@ main.register {
 		header {
 			background-image: linear-gradient(-47deg, #58DFFC 0%, #58E0FC 0%, #51DAFC 0%, #BF6D93 0%, #BE6E94 8%, #3CCBFA 100%, #32C3F9 100%, #2EC0F9 100%, #3CCBFA 100%);
 			width: 100%;
-			margin: em(40) 0 0 0;
+			margin: em(40) 0 em(30) 0;
 			padding: em(20) em(70);
 
 			-webkit-border-top-left-radius: 6px;
@@ -47,6 +47,15 @@ main.register {
 				text-align: center;
 				line-height: em(26);
 			}
+		}
+
+		p.message {
+			background: $primary;
+			@include openSans(em(16));
+			color: $white;
+			width: em(390);
+			margin: auto;
+			padding: em(20) em(25);
 		}
 
 		form {

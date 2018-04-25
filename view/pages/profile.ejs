@@ -10,11 +10,8 @@
 </nav>
 
 <header class="profile">
-
 	<figure style="background: url('images/profile.jpg') no-repeat center center;"></figure>
-
 	<h1><span class="name"><%= data.name %></span>, <span class="place"><%= data.place %></span></h1>
-	
 </header>
 
 <section class="meta">
@@ -23,8 +20,15 @@
 			<li>Stories: <span class="data"><%= data.stories.length %></span></li>
 			<li>Followers: <span class="data"><%= data.followers.length %></span></li>
 			<li>Following: <span class="data"><%= data.following.length %></span></li>
+			<% if (title == session) { %>
+			<li><a class="edit" href="/edit">Edit <img src="icons/edit_white.svg"></a></li>
+			<% } %>
 		</ul>
 	</div>
+</section>
+
+<section class="stories wrapper">
+	<h2>Stories from <%= data.name %></h2>
 </section>
 
 <% include ../partials/footer %>

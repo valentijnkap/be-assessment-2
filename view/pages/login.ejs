@@ -1,32 +1,24 @@
 <% include ../partials/head %>
 
 <div id="container">
-
 	<main class="wrapper register">
-
 		<img src="images/logo.svg">	
 		<a class="standardButton" href="/">Register</a>
-
 		<section>
-
 			<header>
 				<h1>Login and discover the stories from other people</h1>
 			</header>
-
-			<p><%= message %></p>
-
+			<% if (message) { %>
+			<p class="message"><%= message %></p>
+			<% } %>
 			<form action="/login" method="POST">
 				<input type="text" name="username" placeholder="Username" required>
 				<input type="password" name="password" placeholder="Password" required>
 				<input type="submit" value="Login">
 			</form>
-			
 		</section>
-
 	</main>
-
 	<span class="reference"><%= caption %></span>
-
 </div>
 
 <% include ../partials/footer %>

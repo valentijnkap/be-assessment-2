@@ -32,8 +32,8 @@
 }
 
 @mixin backgroundSize($size) {
-	-webkit-background-size: 	$size;
-	-moz-background-size: 		$size;
-	-o-background-size: 		$size;
-	background-size: 			$size;
+	-webkit-background-size: 	$size !important;
+	-moz-background-size: 		$size !important;
+	-o-background-size: 		$size !important;
+	background-size: 			$size !important;
 }

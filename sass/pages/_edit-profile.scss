@@ -1,0 +1,109 @@
+/* Edit profile */
+
+nav[role=navigation] {
+	figure.thumb {
+		display: block;
+		background-position: center center !important;
+		@include backgroundSize(cover);
+		width: em(50);
+		height: em(50);
+		float: right;
+		margin: em(-40) 0 0 0;
+		border: 4px solid $secundary;
+		@include borderRadius(100%);
+	}
+}
+
+div.header {
+	background: linear-gradient(226deg, #BE6E94 0%, #3CCBFA 100%);
+	width: 100%;
+	height: em(250);
+	float: left;
+}
+
+section.editForm {
+	width: 100%;
+	float: left;
+	padding: 0 0 em(60) 0;
+
+	div {
+		background: $white;
+		width: em(700);
+		margin: em(-200) auto 0;
+		padding: em(30);
+		box-shadow: 0 0 4px 0 rgba(0,0,0,0.10);
+		@include borderRadius(6px);
+	}
+
+	h1 {
+		@include quicksand(em(30), 300);
+		color: $black;
+		margin-top: 0;
+	}
+
+	form {
+		label {
+			@include quicksand(em(18), 500);
+			color: $secundary;
+		}
+
+		label.fileInputLabel {
+			width: 100%;
+			height: em(50);
+			float: left;
+			border: 1px solid #CECECE;
+			margin: em(15) 0 em(30) 0;
+
+			span.filename {
+				@include openSans(em(13));
+				color: $black;
+				padding: em(16) em(20);
+				float: left;
+			}
+
+			span.browseButton {
+				background: $secundary;
+				@include openSans(em(14));
+				color: $white;
+				padding: em(14) em(25);
+				margin: em(2) em(2) 0 0;
+				float: right;
+				cursor: pointer;
+				@include transition(300ms);
+			}
+
+			span.browseButton:hover {
+				background: $primary;
+			}
+		}
+
+		input[type=file] {
+			display: none;
+		}
+
+		input[type=text], input[type=password] {
+			@include openSans(em(13));
+			color: $black;
+			width: 100%;
+			padding: em(20) em(25);
+			margin: em(15) 0 em(30);
+			border: 1px solid #CECECE;
+		}
+
+		button[type=submit] {
+			background: $primary;
+			@include quicksand(em(14), 400);
+			color: $white;
+			padding: em(10) em(15);
+			cursor: pointer;
+			border: none;
+			@include borderRadius(50px);
+			@inlcude appearance(none);
+			@include transition(300ms);
+		}
+
+		button[type=submit]:hover {
+			background: $secundary;
+		}
+	}
+}

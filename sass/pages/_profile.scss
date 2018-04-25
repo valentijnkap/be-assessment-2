@@ -5,8 +5,9 @@ nav[role=navigation] {
 	width: 100%;
 	padding: em(20) 0;
 	border-bottom: 1px solid #DBDBDB;
+	float: left;
 	
-	a.post {
+	a.post, a.back {
 		background: $primary;
 		@include quicksand(em(15), 400);
 		color: $white;
@@ -21,7 +22,7 @@ nav[role=navigation] {
 		}
 	}
 
-	a.post:hover {
+	a.post:hover, a.back:hover {
 		background: $secundary;
 	}
 
@@ -52,7 +53,9 @@ nav[role=navigation] {
 
 header.profile {
 	background: linear-gradient(226deg, #BE6E94 0%, #3CCBFA 100%);
+	width: 100%;
 	padding: em(50);
+	float: left;
 
 	figure {
 		display: block;
@@ -82,6 +85,7 @@ header.profile {
 section.meta {
 	background: $white;
 	width: 100%;
+	float: left;
 	padding: em(25) 0;
 	box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
 
@@ -95,6 +99,7 @@ section.meta {
 		margin: 0;
 		padding: 0;
 		width: 100%;
+		height: em(30);
 
 		li {
 			display: inline;
@@ -105,9 +110,39 @@ section.meta {
 			span.data {
 				color: $secundary;
 			}
+
+			a.edit {
+				background: $secundary;
+				@include quicksand(em(14), 400);
+				color: $white;
+				padding: em(5) em(12);
+				margin: -3px 0 0 0;
+				float: right;
+				@include borderRadius(50px);
+				@inlude transition(300ms);
+
+				img {
+					float: right;
+					margin: 3px 0 0 10px;
+				}
+			}
+
+			a.edit:hover {
+				background: $primary;
+			}
 		}
 	}
 }
 
+section.stories {
+	padding: em(30) 0 0;
+	float: left;
+	width: 100%;
 
+	h2 {
+		@include quicksand(em(30), 500);
+		color: $primary;
+		text-align: center;
+	}
+}
 
