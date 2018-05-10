@@ -1,19 +1,5 @@
 /* Edit profile */
 
-nav[role=navigation] {
-	figure.thumb {
-		display: block;
-		background-position: center center !important;
-		@include backgroundSize(cover);
-		width: em(50);
-		height: em(50);
-		float: right;
-		margin: em(-40) 0 0 0;
-		border: 4px solid $secundary;
-		@include borderRadius(100%);
-	}
-}
-
 div.header {
 	background: linear-gradient(226deg, #BE6E94 0%, #3CCBFA 100%);
 	width: 100%;
@@ -21,7 +7,7 @@ div.header {
 	float: left;
 }
 
-section.editForm {
+section.form {
 	width: 100%;
 	float: left;
 	padding: 0 0 em(60) 0;
@@ -43,8 +29,10 @@ section.editForm {
 
 	form {
 		label {
+			display: block;
 			@include quicksand(em(18), 500);
 			color: $secundary;
+			width: 100%;
 		}
 
 		label.fileInputLabel {

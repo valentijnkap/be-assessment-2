@@ -1,0 +1,35 @@
+/* Writing page */
+
+section.form {
+	form {
+		input[type=number] {
+			@include openSans(em(13));
+			color: $black;
+			width: 48%;
+			padding: em(20) em(25);
+			margin: 0;
+			border: 1px solid #CECECE;
+		}
+
+		input[name=lat] {
+			margin: 0 3% 0 0;
+		}
+
+		span.label {
+			display: block;
+			@include quicksand(em(18), 500);
+			color: $secundary;
+			width: 100%;
+			margin: em(30) 0 0 0;
+		}
+
+		textarea {
+			@include openSans(em(13));
+			color: $black;
+			width: 100%;
+			padding: em(20) em(25);
+			margin: em(15) 0 em(30);
+			border: 1px solid #CECECE;
+		}
+	}
+}

@@ -2,8 +2,8 @@
 
 <nav class="withThumb" role="navigation">
 	<div class="wrapper">
-		<a class="back" href="/users/<%= data.username %>">To profile</a>
-		<h2>Edit profile</h2>
+		<a class="post" href="/feed">To feed</a>
+		<h2>Feed</h2>
 		<div class="user">
 			<span>Hi, <%= data.name %></span>
 			<% if (!data.thumb) { %>
@@ -23,26 +23,31 @@
 
 <section class="form">
 	<div>
-		<h1>Edit your profile</h1>
-		<form action="/edit?_method=PUT" method="POST" enctype="multipart/form-data">
-			<label>Your name
-				<input type="text" name="name" value="<%= data.name %>" required>
+		<form action="/write" method="POST" enctype="multipart/form-data">
+			<h1>Write your story</h1>
+			<label>What's the title
+				<input type="text" name="title" placeholder="Title.." required>
 			</label>
-			<label>Email
-				<input type="text" name="email" value="<%= data.email %>" required>
+			<label>Where did your story happen
+				<input type="text" name="where" placeholder="Tell us the place" required>
 			</label>
-			<label>Where you from
-				<input type="text" name="place" value="<%= data.place %>" required>
-			</label>
+			<input type="number" name="lat" placeholder="Latitude">
+			<input type="number" name="long" placeholder="Longtitude">
+			<span class="label">Do you have a picture?</span>
 			<label for="fileInput" class="fileInputLabel">
-				<input id="fileInput" type="file" name="thumb">
+				<input id="fileInput" type="file" name="banner">
 				<span class="filename"></span>
 				<span class="browseButton">Choose picture</span>
 			</label>
-			<label>Change your password
-				<input type="password" name="password">
+			<label>Summary
+				<textarea name="summary"></textarea>
 			</label>
-			<button type="submit">Update</button>
+			<label>The story
+				<textarea name="story"></textarea>
+			</label>
+			<input type="hidden" name="name" value="<%= data.name %>">
+			<input type="hidden" name="thumb" value="<%= data.thumb %>">
+			<button type="submit">Post story</button>
 		</form>
 	</div>
 </section>

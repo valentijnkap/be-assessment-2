@@ -9,8 +9,9 @@
 	@import 'base/visuals';
 
 
-/*	2	The structural layout
+/*	2	Visuals
 -----------------------------------------*/
+	@import 'visuals/navigationBar';
 
 
 /*	3	The pages
@@ -18,4 +19,6 @@
 	@import 'pages/register';
 	@import 'pages/profile';
 	@import 'pages/edit-profile';
+	@import 'pages/feed';
+	@import 'pages/write';
 	@import 'pages/error';

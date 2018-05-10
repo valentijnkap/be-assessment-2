@@ -1,0 +1,136 @@
+nav[role=navigation] {
+	background: $white;
+	width: 100%;
+	padding: em(20) 0;
+	border-bottom: 1px solid #DBDBDB;
+	float: left;
+	
+	a.post, a.back {
+		background: $primary;
+		@include quicksand(em(15), 400);
+		color: $white;
+		float: left;
+		padding: em(10) em(20);
+		@include borderRadius(50px);
+		@include transition(300ms);
+
+		img {
+			float: right;
+			margin: 6px 0 0 10px;
+		}
+	}
+
+	a.post:hover, a.back:hover {
+		background: $secundary;
+	}
+
+	h2	{
+		@include lobster(em(28));
+		color: $tertiary;
+		text-align: center;
+		width: 20%;
+		margin: 0 auto;
+	}
+
+	a.feed, a.logout {
+		@include quicksand(em(15), 400);
+		color: $secundary;
+		float: right;
+		padding: em(10) em(15);
+		margin: em(-38) 0 0 em(20);
+		border: 1px solid $secundary;
+		@include borderRadius(50px);
+		@include transition(300ms);
+	}
+
+	a.feed:hover, a.logout:hover {
+		border: 1px solid $primary;
+		color: $primary;
+	}
+	
+	figure.thumb {
+		display: block;
+		background-position: center center !important;
+		@include backgroundSize(cover);
+		width: em(50);
+		height: em(50);
+		float: right;
+		margin: em(-40) 0 0 0;
+		border: 4px solid $secundary;
+		@include borderRadius(100%);
+	}
+
+	div.user {
+		position: absolute;
+		right: 0;
+		margin: em(-55) 0 0 0;
+		height: em(100);
+
+		span {
+			@include quicksand(em(16), 500);
+			color: $black;
+			line-height: em(60);
+			float: left;
+		}
+
+		> a {
+			display: block;
+			@include backgroundSize(cover);
+			width: em(60);
+			height: em(60);
+			float: right;
+			margin: 0 0 0 em(20);
+			border: 3px solid $tertiary;
+			@include borderRadius(50px);
+		}
+
+		ul.submenu {
+			display: none;
+			position: absolute;
+			background: $white;
+			padding: 0;
+			list-style: none;
+			right: 0;
+			top: em(59);
+			border: 1px solid #DBDBDB;
+			z-index: 9999;
+
+			li {
+				padding: em(15) em(30);
+				width: em(170);
+				border-bottom: 1px solid #DBDBDB;
+
+				a {
+					@include quicksand(em(14), 400);
+					color: $text;
+
+					span {
+						line-height: em(26);
+						float: right;
+						color: inherit;
+						text-align: left;
+						width: em(90);
+					}
+				}
+
+				a:hover {
+					color: $primary;
+				}
+			}
+		}
+	}
+
+	div.user:hover ul.submenu {
+		display: inline-block;
+	}
+}
+
+nav.withThumb {
+	a.post {
+		margin: em(10) 0 0 0;
+	}
+
+	h2 {
+		line-height: em(30);
+	}
+}

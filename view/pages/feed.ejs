@@ -1,0 +1,50 @@
+<% include ../partials/head %>
+
+<nav class="withThumb" role="navigation">
+	<div class="wrapper">
+		<a class="post" href="/write">Post a story <img src="icons/plus.svg"></a>
+		<h2>Feed</h2>
+		<div class="user">
+			<span>Hi, <%= dataUser.name %></span>
+			<% if (!dataUser.thumb) { %>
+			<a href="/users/<%= dataUser.username %>" style="background: url('images/profile.jpg') no-repeat center center;""></a>
+			<% } else { %>
+			<a href="/users/<%= dataUser.username %>" style="background: url('uploads/<%= dataUser.username %>/<%= dataUser.thumb %>') no-repeat center center;"></a>
+			<% } %>
+
+			<ul class="submenu">
+				<li><a href="/edit"><img src="icons/edit.svg"> <span>Edit profile</span></a></li>
+				<li><a href="/logout"><img src="icons/logout.svg"> <span>logout</span></a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<section class="stories">
+	<div class="wrapper storiewrapper">
+		<% if (dataStories.length == 0) { %>
+		<p>Sorry user didn't wrote any stories</p>
+		<%
+		 	} else { 
+		 		for (var i = 0; i < dataStories.length; i++) { 
+		%>
+		<article class="storypost">
+			<% if (dataStories[i].banner) { %>
+			<figure style="background: url('/uploads/<%= dataStories[i].userData.username %>/<%= dataStories[i].banner %>') no-repeat center center;"></figure>
+			<% } %>
+			<h1><%= dataStories[i].title %></h1>
+			<section>
+				<a class="name" href="/users/<%= dataStories[i].userData.username %>"><%= dataStories[i].userData.name %></a>
+				 | <span class="date"><%= dataStories[i].date %></span>
+			</section>
+			<p><%= dataStories[i].summary %></p>
+			<a href="/stories/<%= dataStories[i]._id %>">Read story</a>
+		</article>
+		<%
+				}
+			} 
+		%>
+	</div>
+</section>
+
+<% include ../partials/footer %>

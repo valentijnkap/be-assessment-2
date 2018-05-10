@@ -1,56 +1,5 @@
 /* Profile */
 
-nav[role=navigation] {
-	background: $white;
-	width: 100%;
-	padding: em(20) 0;
-	border-bottom: 1px solid #DBDBDB;
-	float: left;
-	
-	a.post, a.back {
-		background: $primary;
-		@include quicksand(em(15), 400);
-		color: $white;
-		float: left;
-		padding: em(10) em(20);
-		@include borderRadius(50px);
-		@include transition(300ms);
-
-		img {
-			float: right;
-			margin: 6px 0 0 10px;
-		}
-	}
-
-	a.post:hover, a.back:hover {
-		background: $secundary;
-	}
-
-	h2	{
-		@include lobster(em(28));
-		color: $tertiary;
-		text-align: center;
-		width: 20%;
-		margin: 0 auto;
-	}
-
-	a.feed, a.logout {
-		@include quicksand(em(15), 400);
-		color: $secundary;
-		float: right;
-		padding: em(10) em(15);
-		margin: em(-38) 0 0 em(20);
-		border: 1px solid $secundary;
-		@include borderRadius(50px);
-		@include transition(300ms);
-	}
-
-	a.feed:hover, a.logout:hover {
-		border: 1px solid $primary;
-		color: $primary;
-	}
-}
-
 header.profile {
 	background: linear-gradient(226deg, #BE6E94 0%, #3CCBFA 100%);
 	width: 100%;
@@ -143,6 +92,65 @@ section.stories {
 		@include quicksand(em(30), 500);
 		color: $primary;
 		text-align: center;
+		margin: em(10) 0 em(30);
+	}
+
+	article {
+		position: relative;
+		background: $white;
+		width: em(355);
+		margin-bottom: em(30);
+		padding-bottom: em(20);
+		overflow: hidden;
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+		@include borderRadius(3px);
+
+		figure {
+			display: block;
+			@include backgroundSize(cover);
+			width: 100%;
+			height: em(220);
+			margin: 0;
+		}
+
+		h1 {
+			@include lobster(em(22));
+			color: $tertiary;
+			padding: 0 em(15);
+			margin: em(10) 0;
+		}
+
+		section {
+			@include quicksand(em(14), 400);
+			color: $black;
+			padding: 0 em(20);
+
+			a {
+				@include transition(300ms);
+			}
+
+			a:hover {
+				color: $primary;
+			}
+		}
+
+		p {
+			@include openSans(em(14));
+			color: $text;
+			line-height: em(24);
+			padding: 0 em(20);
+			margin: em(10) 0;
+		}
+
+		> a {
+			@include quicksand(em(16), 500);
+			color: $primary;
+			padding: 0 em(20);
+			@include transition(300ms);
+		}
+
+		> a:hover {
+			color: $secundary;
+		}
 	}
 }
-

@@ -2,7 +2,7 @@
 
 <nav role="navigation">
 	<div class="wrapper">
-		<a class="post" href="/write">Post a story <img src="icons/plus.svg"></a>
+		<a class="post" href="/write">Post a story <img src="/icons/plus.svg"></a>
 		<h2>Profile</h2>
 		<a class="logout" href="/logout">Logout</a>
 		<a class="feed" href="/feed">See feed</a>
@@ -10,25 +10,54 @@
 </nav>
 
 <header class="profile">
-	<figure style="background: url('images/profile.jpg') no-repeat center center;"></figure>
-	<h1><span class="name"><%= data.name %></span>, <span class="place"><%= data.place %></span></h1>
+	<% if (!dataUser.thumb) { %>
+	<figure style="background: url('/images/profile.jpg') no-repeat center center;"></figure>
+	<% } else { %>
+		<figure style="background: url('/uploads/<%= dataUser.username %>/<%= dataUser.thumb %>') no-repeat center center;"></figure>
+	<% } %>
+	<h1><span class="name"><%= dataUser.name %></span>, <span class="place"><%= dataUser.place %></span></h1>
 </header>
 
 <section class="meta">
 	<div class="table">
 		<ul>
-			<li>Stories: <span class="data"><%= data.stories.length %></span></li>
-			<li>Followers: <span class="data"><%= data.followers.length %></span></li>
-			<li>Following: <span class="data"><%= data.following.length %></span></li>
+			<li>Stories: <span class="data"><%= dataStories.length %></span></li>
+			<li>Followers: <span class="data"><%= dataUser.followers.length %></span></li>
+			<li>Following: <span class="data"><%= dataUser.following.length %></span></li>
 			<% if (title == session) { %>
-			<li><a class="edit" href="/edit">Edit <img src="icons/edit_white.svg"></a></li>
+			<li><a class="edit" href="/edit">Edit <img src="/icons/edit_white.svg"></a></li>
 			<% } %>
 		</ul>
 	</div>
 </section>
 
-<section class="stories wrapper">
-	<h2>Stories from <%= data.name %></h2>
+<section class="stories">
+	<h2>Stories from <%= dataUser.name %></h2>
+
+	<div class="wrapper storiewrapper">
+		<% if (dataStories.length == 0) { %>
+		<p>Sorry user didn't wrote any stories</p>
+		<%
+		 	} else { 
+		 		for (var i = 0; i < dataStories.length; i++) { 
+		%>
+		<article class="storypost">
+			<% if (dataStories[i].banner) { %>
+			<figure style="background: url('/uploads/<%= dataStories[i].userData.username %>/<%= dataStories[i].banner %>') no-repeat center center;"></figure>
+			<% } %>
+			<h1><%= dataStories[i].title %></h1>
+			<section>
+				<a class="name" href="/users/<%= dataStories[i].userData.username %>"><%= dataStories[i].userData.name %></a>
+				 | <span class="date"><%= dataStories[i].date %></span>
+			</section>
+			<p><%= dataStories[i].summary %></p>
+			<a href="/stories/<%= dataStories[i]._id %>">Read story</a>
+		</article>
+		<%
+				}
+			} 
+		%>
+	</div>
 </section>
 
 <% include ../partials/footer %>
