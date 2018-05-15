@@ -303,7 +303,7 @@ function storyDetail (req, res) {
   try {
     checkID = new mongo.ObjectID(id)
   } catch (err) {
-      res.status(400).render('pages/error.ejs', {
+    res.status(400).render('pages/error.ejs', {
       title: 400, 
       code: 400, 
       message: 'Sorry, we can not help you with this request!'
@@ -312,15 +312,24 @@ function storyDetail (req, res) {
   }
 
   if (req.session.user) {
-    db.collection('stories').findOne({
-      _id: new mongo.ObjectID(id)
-    }, done)
+    var user = req.session.user.username
 
-    function done (err, data) {
-      if (err) throw err
-      console.log(data)
-      console.log(id)
-      res.send('hij doet het')
+    db.collection('users').findOne({
+      username: user
+    }, ifHaveData)
+
+    function ifHaveData (err, dataUser) {
+      db.collection('stories').findOne({
+        _id: new mongo.ObjectID(id)
+      }, done)
+
+      function done (err, dataStory) {
+        if (err) throw err
+        var meta = {
+          title: dataStory.title
+        }
+        res.render('pages/detail.ejs', Object.assign({}, {dataUser: dataUser, dataStory: dataStory }, meta))
+      }
     }
   } else {
     loginFirst(res)

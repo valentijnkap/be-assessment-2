@@ -1,0 +1,52 @@
+<% include ../partials/head %>
+
+<nav class="withThumb" role="navigation">
+	<div class="wrapper">
+		<a class="post" href="/feed">Back to feed</a>
+		<h2>Story</h2>
+		<div class="user">
+			<span>Hi, <%= dataUser.name %></span>
+			<% if (!dataUser.thumb) { %>
+			<a href="/users/<%= dataUser.username %>" style="background: url('/images/profile.jpg') no-repeat center center;"></a>
+			<% } else { %>
+			<a href="/users/<%= dataUser.username %>" style="background: url('/uploads/<%= dataUser.username %>/<%= dataUser.thumb %>') no-repeat center center;"></a>
+			<% } %>
+
+			<ul class="submenu">
+				<li><a href="/edit"><img src="/icons/edit.svg"> <span>Edit profile</span></a></li>
+				<li><a href="/logout"><img src="/icons/logout.svg"> <span>logout</span></a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="header"></div>
+
+<section class="story">
+	<article>
+		<header style="background: url('/uploads/<%= dataStory.userData.username %>/<%= dataStory.banner %>') no-repeat center center;"></header>
+		<a href="/users/<%= dataStory.userData.username %>" class="user">
+			<h2><%= dataStory.userData.name %></h2>
+			<% if (!dataStory.userData.thumb) { %>
+				<figure style="background: url('/images/profile.jpg') no-repeat center center;"></figure>
+			<% } else { %>
+			<figure style="background: url('/uploads/<%= dataStory.userData.username %>/<%= dataStory.userData.thumb %>') no-repeat center center;"></figure>
+			<% } %>
+		</a>
+		<h1><%= dataStory.title %></h1>
+		<section class="storyMeta">
+			<span class="date">posted on: <%= dataStory.date %></span> | 
+			<span class="place"><%= dataStory.where %></span>
+		</section>
+		<p><%= dataStory.story %></p>
+	</article>
+</section>
+
+<section class="location">
+	<h3>Location</h3>
+	<figure class="map">
+		<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= dataStory.latitude %>,<%= dataStory.longitude %>&zoom=14&scale=2&size=640x300&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xaf5682%7Clabel:p%7C<%= dataStory.where %>&key=AIzaSyA2WOtt39mLEyRnEz8qgoDvAaQZM3IXDJY">
+	</figure>
+</section>
+
+<% include ../partials/footer %>

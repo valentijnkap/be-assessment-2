@@ -3,7 +3,7 @@
 $(document).ready(function (){
 	$('.storiewrapper').masonry({
 	  itemSelector: '.storypost',
-	  columnWidth: 355,
+	  columnWidth: 370,
 	  gutter: 30
 	})
 

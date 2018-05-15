@@ -1,0 +1,97 @@
+/* Detail page */
+
+section.story {
+	width: 100%;
+	float: left;
+	margin: em(-200) 0 0 0;
+	padding: 0 0 em(30) 0;
+
+	article {
+		position: relative;
+		background: $white;
+		overflow: hidden;
+		width: em(700);
+		margin: 0 auto;
+		padding:  0 0 em(20) 0;
+		@include borderRadius(6px);
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+
+		header {
+			display: block;
+			@include backgroundSize(cover);
+			width: 100%;
+			height: em(350);
+		}
+
+		a.user {
+			position: absolute;
+			right: 20px;
+			top: 300px;
+
+			figure {
+				display: block;
+				@include backgroundSize(cover);
+				width: em(100);
+				height: em(100);
+				margin: 0 0 0 em(20);
+				float: right;
+				border: 3px solid #D5D5D5;
+				@include borderRadius(100px);
+			}
+
+			h2 {
+				@include quicksand(em(16), 500);
+				color: $black;
+				text-align: right;
+				float: left;
+				margin: em(60) 0 0 0;
+			}
+		}
+
+		h1 {
+			@include lobster(em(32));
+			color: $tertiary;
+			padding: 0 em(15);
+			margin: em(10) 0 em(5);
+		}
+
+		section.storyMeta {
+			@include quicksand(em(14), 400);
+			color: $black;
+			padding: 0 em(30);
+			margin: 0 0 em(20) 0;
+		}
+
+		p {
+			@include openSans(em(14));
+			color: $text;
+			line-height: em(26);
+			padding: 0 em(30);
+		}
+	}
+}
+
+section.location {
+	width: 100%;
+	float: left;
+	margin: 0 0 em(60) 0;
+
+	h3 {
+		@include quicksand(em(24), 400);
+		color: $primary;
+		text-align: center;
+	}
+
+	figure.map {
+		overflow: hidden;
+		width: em(700);
+		margin: 0 auto;
+		@include borderRadius(3px);
+		box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+}
