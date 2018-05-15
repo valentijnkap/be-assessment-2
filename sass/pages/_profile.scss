@@ -88,6 +88,15 @@ section.stories {
 	float: left;
 	width: 100%;
 
+	div.storiesWrapper {
+		> p {
+			@include openSans(em(16));
+			color: $text;
+			text-align: center;
+			margin: 0 0 em(60) 0;
+		}
+	}
+
 	h2 {
 		@include quicksand(em(30), 500);
 		color: $primary;

@@ -49,4 +49,13 @@
 	</figure>
 </section>
 
+<% if (dataStory.userData.username == session) { %>
+<section class="delete">
+	<form action="/stories/<%= dataStory._id %>?_method=DELETE" method="POST">
+		<h2>Do you want to delete the story?</h2>
+		<button type="submit">Delete story</button>
+	</form>
+</section>
+<% } %>
+
 <% include ../partials/footer %>

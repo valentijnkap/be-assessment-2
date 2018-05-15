@@ -59,10 +59,12 @@ express()
   .get('/feed', feed)
   .get('/edit', editProfile)
   .put('/edit', upload.single('thumb'), updateUser)
+  .delete('/edit', deleteUser)
   .get('/write', writeForm)
   .post('/write', upload.single('banner'), postStory)
   .get('/users/:username', profile)
   .get('/stories/:id', storyDetail)
+  .delete('/stories/:id', deleteStory)
   .use(notFound)
   .listen(port, function () {
     console.log('The app is working on port: ' + port)
@@ -118,7 +120,8 @@ function registerUser (req, res) {
 
   function done (err, data) {
     if (err) throw err
-    res.redirect('/' + req.body.username)
+    req.session.user = {username: req.body.username}
+    res.redirect('/users/' + req.body.username)
   }
 }
 
@@ -234,9 +237,33 @@ function updateUser (req, res) {
   }
 }
 
+function deleteUser (req, res) {
+  var user = req.session.user.username
+
+  db.collection('users').remove({
+    username: user
+  }, ifDeleted)
+
+  function ifDeleted (err) {
+    db.collection('stories').remove({
+      'userData.username': user
+    }, done)
+  }
+
+  function done (err) {
+    if (err) {
+      next(err)
+    }
+    req.session.destroy(redirect)
+    function redirect (err) {
+      if (err) throw err
+      res.redirect('/')
+    }
+  }
+}
+
 function logout (req, res) {
   req.session.destroy(redirect)
-  
   function redirect (err) {
     if (err) throw err
     res.redirect('/login')
@@ -254,11 +281,9 @@ function writeForm (req, res) {
 
   function done (err, data) {
     if (err) throw err
-
     var meta = {
       title: 'Write a story'
     }
-
     res.render('pages/write.ejs', Object.assign({}, {data: data}, meta))
   }
 }
@@ -326,13 +351,29 @@ function storyDetail (req, res) {
       function done (err, dataStory) {
         if (err) throw err
         var meta = {
-          title: dataStory.title
+          title: dataStory.title,
+          session: user
         }
         res.render('pages/detail.ejs', Object.assign({}, {dataUser: dataUser, dataStory: dataStory }, meta))
       }
     }
   } else {
     loginFirst(res)
+  }
+}
+
+function deleteStory (req, res) {
+  var id = req.params.id
+
+  db.collection('stories').remove({
+    _id: new mongo.ObjectID(id)
+  }, done)
+
+  function done (err) {
+    if (err) {
+      next()
+    }
+    res.redirect('/feed')
   }
 }
 

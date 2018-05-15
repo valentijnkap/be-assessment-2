@@ -95,3 +95,44 @@ section.form {
 		}
 	}
 }
+
+section.delete {
+	width: 100%;
+	float: left;
+	padding: 0 0 em(60) 0;
+
+	form {
+		background: $white;
+		width: em(700);
+		margin: 0 auto;
+		padding: em(30);
+		box-shadow: 0 0 4px 0 rgba(0,0,0,0.10);
+		@include borderRadius(6px);
+
+		h2 {
+			@include quicksand(em(20), 500);
+			color: $secundary;
+			text-align: center;
+			margin-top: 0;
+		}
+
+		button[type=submit] {
+			background: #F92E2E;
+			@include quicksand(em(16), 500);
+			color: $white;
+			width: 100%;
+			padding: em(20);
+			border: 2px solid transparent;
+			cursor: pointer;
+			@include borderRadius(50px);
+			@inlcude appearance(none);
+			@include transition(300ms);
+		}
+
+		button[type=submit]:hover {
+			background: transparent;
+			color: #F92E2E;
+			border: 2px solid #F92E2E;
+		}
+	}
+}

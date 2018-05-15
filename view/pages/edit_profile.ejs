@@ -39,12 +39,16 @@
 				<span class="filename"></span>
 				<span class="browseButton">Choose picture</span>
 			</label>
-			<label>Change your password
-				<input type="password" name="password">
-			</label>
 			<button type="submit">Update</button>
 		</form>
 	</div>
+</section>
+
+<section class="delete">
+	<form action="/edit?_method=DELETE" method="POST">
+		<h2>Do you want to delete your account?</h2>
+		<button type="submit">Delete account</button>
+	</form>
 </section>
 
 <% include ../partials/footer %>
