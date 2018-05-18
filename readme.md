@@ -114,6 +114,7 @@ Another fenomenon in the node world is [sessions](https://www.npmjs.com/package/
 ## Usage
 
 **Runs on:**
+
 Node v8.11.01
 MongoDB shell v3.0.15 
 
@@ -123,6 +124,7 @@ $ npm install
 ```
 
 **Database**
+
 Connect the app with MongoDB by creating an `.env` file that looks like this:
 
 ```
