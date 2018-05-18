@@ -23,7 +23,7 @@ mongo.MongoClient.connect(url, function (err, client) {
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     var uploadPath = 'static/uploads/' + req.session.user.username
-    if (fs.exists(uploadPath)) {
+    if (fs.existsSync(uploadPath)) {
       cb(null, uploadPath)
     } else {
       fs.mkdir(uploadPath, function () {
@@ -92,6 +92,8 @@ function registerUser (req, res) {
   }, check)
 
   function check (err, data) {
+    if (err) throw err
+
     if (!data) {
       argon.hash(password).then(insert)
     } else if (data) {
@@ -104,7 +106,7 @@ function registerUser (req, res) {
     }
   }
 
-  function insert(hash) {
+  function insert (hash) {
     db.collection('users').insertOne({
       username: req.body.username,
       name: req.body.name,
@@ -131,7 +133,7 @@ function login (req, res) {
     caption: 'Photo by Katerina Radvanska - Unsplash',
     message: ''
   }
-  if (req.session.user == undefined) {
+  if (req.session.user === undefined) {
     res.render('pages/login.ejs', meta)
   } else if (req.session.user) {
     res.redirect('/' + req.session.user.username)
@@ -147,6 +149,8 @@ function loginUser (req, res) {
   }, done)
 
   function done (err, data) {
+    if (err) throw err
+
     if (!data) {
       var meta = {
         title: 'login',
@@ -170,7 +174,7 @@ function loginUser (req, res) {
         }
         res.render('pages/login.ejs', meta)
       }
-    } 
+    }
   }
 }
 
@@ -179,23 +183,20 @@ function feed (req, res) {
     var meta = {
       title: 'Feed'
     }
-    
     db.collection('users').findOne({
       username: req.session.user.username
     }, ifHaveData)
-    
-    function ifHaveData (err, dataUsers) {
-      if (err) throw err
-
-      db.collection('stories').find().toArray(done)
-
-      function done (err, dataStories) {
-        if (err) throw err
-        res.render('pages/feed', Object.assign({}, {dataUser: dataUsers, dataStories: dataStories }, meta))
-      }
-    }
   } else {
     loginFirst(res)
+  }
+
+  function ifHaveData (err, dataUsers) {
+    if (err) throw err
+
+    db.collection('stories').find().toArray(function (err, dataStories) {
+      if (err) throw err
+      res.render('pages/feed', Object.assign({}, {dataUser: dataUsers, dataStories: dataStories}, meta))
+    })
   }
 }
 
@@ -204,17 +205,15 @@ function editProfile (req, res) {
     var meta = {
       title: 'Edit ' + req.session.user.username
     }
-
     db.collection('users').findOne({
       username: req.session.user.username
     }, done)
-
-    function done (err, data) {
-      if (err) throw err
-      res.render('pages/edit_profile.ejs', Object.assign({}, {data: data}, meta))
-    }
   } else {
     loginFirst(res)
+  }
+  function done (err, data) {
+    if (err) throw err
+    res.render('pages/edit_profile.ejs', Object.assign({}, {data: data}, meta))
   }
 }
 
@@ -237,7 +236,7 @@ function updateUser (req, res) {
   }
 }
 
-function deleteUser (req, res) {
+function deleteUser (req, res, next) {
   var user = req.session.user.username
 
   db.collection('users').remove({
@@ -245,6 +244,7 @@ function deleteUser (req, res) {
   }, ifDeleted)
 
   function ifDeleted (err) {
+    if (err) throw err
     db.collection('stories').remove({
       'userData.username': user
     }, done)
@@ -252,7 +252,7 @@ function deleteUser (req, res) {
 
   function done (err) {
     if (err) {
-      next(err)
+      next()
     }
     req.session.destroy(redirect)
     function redirect (err) {
@@ -294,10 +294,10 @@ function postStory (req, res) {
 
   var today = new Date()
   var dd = today.getDate()
-  var mm = today.getMonth()+1
+  var mm = today.getMonth() + 1
   var yyyy = today.getFullYear()
 
-  var date = dd +  '-' + mm + '-' + yyyy
+  var date = dd + '-' + mm + '-' + yyyy
 
   db.collection('stories').insertOne({
     date: date,
@@ -329,8 +329,8 @@ function storyDetail (req, res) {
     checkID = new mongo.ObjectID(id)
   } catch (err) {
     res.status(400).render('pages/error.ejs', {
-      title: 400, 
-      code: 400, 
+      title: 400,
+      code: 400,
       message: 'Sorry, we can not help you with this request!'
     })
     return
@@ -342,27 +342,29 @@ function storyDetail (req, res) {
     db.collection('users').findOne({
       username: user
     }, ifHaveData)
-
-    function ifHaveData (err, dataUser) {
-      db.collection('stories').findOne({
-        _id: new mongo.ObjectID(id)
-      }, done)
-
-      function done (err, dataStory) {
-        if (err) throw err
-        var meta = {
-          title: dataStory.title,
-          session: user
-        }
-        res.render('pages/detail.ejs', Object.assign({}, {dataUser: dataUser, dataStory: dataStory }, meta))
-      }
-    }
   } else {
     loginFirst(res)
   }
+
+  function ifHaveData (err, dataUser) {
+    if (err) throw err
+
+    db.collection('stories').findOne({
+      _id: new mongo.ObjectID(id)
+    }, done)
+
+    function done (err, dataStory) {
+      if (err) throw err
+      var meta = {
+        title: dataStory.title,
+        session: user
+      }
+      res.render('pages/detail.ejs', Object.assign({}, {dataUser: dataUser, dataStory: dataStory}, meta))
+    }
+  }
 }
 
-function deleteStory (req, res) {
+function deleteStory (req, res, next) {
   var id = req.params.id
 
   db.collection('stories').remove({
@@ -384,40 +386,39 @@ function profile (req, res) {
     db.collection('users').findOne({
       username: user
     }, ifHaveData)
-
-    function ifHaveData (err, dataUser) {
-      if (err) {
-        throw err
-      } else if(!dataUser) {
-        res.status(404).render('pages/error.ejs', {
-          title: 404, 
-          code: 404, 
-          message: 'Sorry, we can not help you with this request!'
-        })
-      } else { 
-        db.collection('stories').find({
-          'userData.username': user
-        }).toArray(done)
-
-        function done (err, dataStories) {
-          var meta = {
-            title: user,
-            session: req.session.user.username
-          }
-          res.render('pages/profile.ejs', Object.assign({}, {dataUser: dataUser, dataStories: dataStories}, meta))
-        }
-      }
-    }
   } else {
     loginFirst(res)
   }
+
+  function ifHaveData (err, dataUser) {
+    if (err) {
+      throw err
+    } else if (!dataUser) {
+      res.status(404).render('pages/error.ejs', {
+        title: 404,
+        code: 404,
+        message: 'Sorry, we can not help you with this request!'
+      })
+    } else {
+      db.collection('stories').find({
+        'userData.username': user
+      }).toArray(function done (err, dataStories) {
+        if (err) throw err
+        var meta = {
+          title: user,
+          session: req.session.user.username
+        }
+        res.render('pages/profile.ejs', Object.assign({}, {dataUser: dataUser, dataStories: dataStories}, meta))
+      })
+    }
+  }
 }
 
-function notFound(req, res) {
+function notFound (req, res) {
   if (req.session.user) {
     res.status(404).render('pages/error.ejs', {
-      title: 404, 
-      code: 404, 
+      title: 404,
+      code: 404,
       message: 'Sorry, we can not help you with this request!'
     })
   } else {
